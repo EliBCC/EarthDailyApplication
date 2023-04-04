@@ -1,3 +1,10 @@
+# Solution
+def calcFib(n):
+	if n <= 1:
+		return n
+	else:
+		return calcFib(n - 1) + calcFib(n - 2)
+
 # Tests
 answers = {\
     0: 0,
@@ -15,3 +22,13 @@ answers = {\
 	12: 144,
 	13: 233,
 }
+
+def testFunc():
+	for k,v in answers.items():
+		result = calcFib(k)
+		if result is not v:
+			print("Test {} failed. {} was returned, the correct answer is {}".format(k, result, v))
+		else:
+			print("The {}th Fibonacci number is {}".format(k, result))
+
+testFunc()
