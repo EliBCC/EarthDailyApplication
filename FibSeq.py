@@ -1,9 +1,9 @@
 # Solution
 def calcFib(n):
-	if n <= 1:
+	if n <= 1:									# Given values
 		return n
 	else:
-		return calcFib(n - 1) + calcFib(n - 2)
+		return calcFib(n - 1) + calcFib(n - 2)	# Calculate Fib(n > 1)
 
 # Tests
 answers = {\
@@ -18,17 +18,15 @@ answers = {\
 	8: 21,
 	9: 34,
 	10: 55,
-	11: 89,
-	12: 144,
-	13: 233,
+	20: 6765,
 }
 
 def testFunc():
 	for k,v in answers.items():
 		result = calcFib(k)
-		if result is not v:
+		if result != v:
 			print("Test {} failed. {} was returned, the correct answer is {}".format(k, result, v))
 		else:
-			print("The {}th Fibonacci number is {}".format(k, result))
+			print("Fibonacci({}) = {}".format(k, result))
 
 testFunc()
