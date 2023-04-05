@@ -1,4 +1,7 @@
 # Solution
+from multiprocessing.sharedctypes import Value
+
+
 def calcFib(n):
 	if n <= 1:									# Given values
 		return n
@@ -29,4 +32,10 @@ def testFunc():
 		else:
 			print("Fibonacci({}) = {}".format(k, result))
 
-testFunc()
+input = input("Please enter a non-negative integer: ")
+try:
+	n = int(input)
+	if n < 0:
+		raise ValueError
+except ValueError:
+	print("Sorry, {} is not a positive integer".format(input))
