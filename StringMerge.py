@@ -16,8 +16,8 @@ def mergeLists(originalList, addList, rmList):
     ans = ans[~ans.isin(rmList)].dropna()                                       # Drop strings from rmList
         
     # Sort dataframe correctly
-    ans["charCount"] = ans["strings"].apply(lambda string: len(string))
-    ans = ans.sort_values(["charCount", "strings"], ascending=False)
+    ans["charCount"] = ans["strings"].apply(lambda string: len(string))         # Create column with the length of each string
+    ans = ans.sort_values(["charCount", "strings"], ascending=False)            # Sort in reverse order, first by character count, then alphabetically
     
     return ans["strings"].tolist()
 
@@ -69,4 +69,16 @@ def runTests():
         else:
             print("Test failed.\nCase: {}\nResult: {}".format(test, result))
 
-runTests()
+# runTests()
+
+# Run
+originalStrings = input("Please enter the original list of strings, separated by commas: ")
+addStrings = input("Please enter a list of strings to add, separated by commas: ")
+rmStrings = input("Please enter a list of strings to remove, separated by commas: ")
+
+originalStrings = [str.strip() for str in originalStrings.split(',')]
+addStrings = [str.strip() for str in addStrings.split(',')]
+rmStrings = [str.strip() for str in rmStrings.split(',')]
+
+result = mergeLists(originalStrings, addStrings, rmStrings)
+print("The resulting list is:\n{}".format(result))
