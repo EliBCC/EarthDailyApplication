@@ -14,6 +14,10 @@ def mergeLists(originalList, addList, rmList):
     elif len(addList) > 0:
         ans = ans.merge(addDF, how='outer')                                     # If both the original list and the add list contain items, merge them
     ans = ans[~ans.isin(rmList)].dropna()                                       # Drop strings from rmList
+        
+    # Sort dataframe correctly
+    ans["charCount"] = ans["strings"].apply(lambda string: len(string))
+    ans = ans.sort_values(["charCount", "strings"], ascending=False)
     
     return ans["strings"].tolist()
 
